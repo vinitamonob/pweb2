@@ -6,19 +6,43 @@
     <title>Function PHP</title>
 </head>
 <body>
-    <?php
-    function persegi_panjang($p, $l) {
-        return $p*$l;
-    }
-    function lingkaran($r) {
-        return 3.14 * $r * $r;
-    }
-    ?>
-    
-    Masukkan Panjang = <input type="text" name="" id="">
-    <?php
-    echo "Luas Persegi Panjang = " . persegi_panjang(5, 2) . "</br>";
-    echo "Luas Persegi Panjang = " . lingkaran(7) . "</br>";
-    ?>
+
+<form method="post" action="">
+    Masukkan Panjang = <input type="text" name="panjang" id="panjang">
+    Masukkan Lebar = <input type="text" name="lebar" id="lebar">
+    <input type="submit" name="submit" value="Hitung">
+</form>
+
+<?php
+function persegi_panjang($p, $l) {
+    return $p * $l;
+}
+
+if(isset($_POST['submit'])) {
+    $p = $_POST['panjang'];
+    $l = $_POST['lebar'];
+    $luas = persegi_panjang($p, $l);   
+    echo "Maka Luas Persegi Panjang = persegi_panjang($luas) </br>";
+}
+
+?>
+
+<form method="post" action="">
+    Masukkan Jari-jari = <input type="text" name="jari-jari" id="jari-jari">
+    <input type="submit" name="submit" value="Hitung">
+</form>
+
+<?php
+function lingkaran($r) {
+    return 3.14 * $r * $r;
+}
+
+if(isset($_POST['submit'])) {
+    $r = $_POST['jari-jari'];
+    $hasil = lingkaran($r);
+    echo "Maka Luas Lingkaran = lingkaran($hasil) </br>";
+}
+?>
+
 </body>
 </html>
