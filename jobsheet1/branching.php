@@ -16,11 +16,9 @@
 // $x = 2;
 // echo "Nilai X = $x </br></br>";
 
+//evaluasi atau cek bilangan yg telah di submit
 if (isset($_POST['submit'])) {
-    $x = $_POST['bilangan'];
-
-    // Mengkonversi input menjadi angka (float)
-    $x = intval($x);
+    $x = $_POST['bilangan']; //mengambil nilai dalam metode POST dan di simpan dlm variabel x
     echo "</br>";
 
     if ($x > 0) {
@@ -31,6 +29,7 @@ if (isset($_POST['submit'])) {
         echo "$x adalah Bilangan Nol";
     }
 }
-    ?>
+
+?>
 </body>
 </html>

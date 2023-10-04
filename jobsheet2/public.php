@@ -5,6 +5,7 @@ class mahasiswa{
     public $nama;
     private $nim = "220302008";
 
+
     //public method
     public function tampilkan_nama() {
         //nilai kembalian
