@@ -30,6 +30,7 @@
 
     <br><br>
     <h4>Tambah Data Mahasiswa</h4>
+    <!-- data akan di kirim ke file -->
       <form action="proses-mhs.php?aksi=tambah" method="post">
         <table>
             <tr>

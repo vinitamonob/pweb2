@@ -1,6 +1,34 @@
 <?php
-include '../classes/database.php';
-$db = new Database();
+
+include_once '../../config.php';
+include_once '../../controllers/DosenController.php';
+
+$database = new database();
+$db = $database->getKoneksi();
+
+if (isset($_GET['nip'])) {
+    $nip = $_GET['nip'];
+
+    $dosenController = new DosenController($db);
+    $dosenData = $dosenController->getDosemByNip($nip);
+
+    if ($dosenData) {
+        if (isset($_POST['submit'])) {
+            $nim=$_POST['nip'];
+            $nama=$_POST['nama'];
+            $alamat=$_POST['alamat'];
+
+            $result = $dosenController->updateDosen($nip, $nama, $alamat);
+            if ($result) {
+                header("location:index.php");
+            } else {
+                header("location:edit.php");
+            }       
+        } 
+    } else {
+        echo "Dosen tidak ditemukan";
+    }
+} 
 ?>
 
 <head>
@@ -33,39 +61,42 @@ $db = new Database();
       </div>
     </nav>
 
-    <br><br>
-    <h4>Edit Data Mahasiswa</h4>
-    <form action="proses-mhs.php?aksi=update" method="post">
-        <?php
-        $nim = $_GET['nim'];
-        $mahasiswa = $db->edit($nim);
-        foreach($mahasiswa as $d) {
-        ?>
-
-        <table>
-            <tr>
-                <td>NIM</td>
-                <td>  
-                    <input class="form-control" type="hidden" name="nim" value="<?php echo $d['nim'] ?>">
-                    <input class="form-control"  type="text" name="nim" value="<?php echo $d['nim'] ?>"></td>
-            </tr>
-            <tr>
-                <td>Nama</td>
-                <td><input class="form-control" type="text" name="nama" value="<?php echo $d['nama'] ?>"></td>
-            </tr>
-            <tr>
-                <td>Alamat</td>
-                <td><textarea class="form-control" name="alamat" id="" cols="30" rows="5"><?php echo $d['alamat'] ?></textarea></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input calss="btn btn-primary" type="submit" value="Simpan"></td>
-            </tr>
-        </table>
-    <?php    
-    }
-    ?>
-    </form>
+<br>
+<h4>Edit Data Dosen</h4>
+<?php
+if ($dosenData) {
+?>
+<div class="">
+  <form action="" method="post">
+      <?php
+      foreach ($dosenData as $d => $value) {
+      ?>    
+      <table broder="0" class="table table-borderless">
+          <tr>
+              <td width="150">
+                  <?php
+                  echo $d;
+                  ?>
+              </td>
+              <td>
+                  <input class="form-control w-50" type="text" name="<?php echo $d ?>" value="<?php echo $value ?>">
+              </td>
+          </tr>
+      <?php
+      }
+      ?>
+      <tr>
+          <td></td>
+          <td>
+              <input class="btn btn-primary" type="submit" name="submit" value="Simpan">
+          </td>
+      </tr>
+      </table>
+  </form>
+</div>
+<?php    
+}
+?>
 
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

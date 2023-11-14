@@ -1,8 +1,3 @@
-<?php
-include '../classes/database.php';
-$db = new Database();
-?>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,38 +29,54 @@ $db = new Database();
     </nav>
 
     <br><br>
-    <h4>Edit Data Mahasiswa</h4>
-    <form action="proses-mhs.php?aksi=update" method="post">
-        <?php
-        $nim = $_GET['nim'];
-        $mahasiswa = $db->edit($nim);
-        foreach($mahasiswa as $d) {
-        ?>
-
+    <h4>Tambah Data Mahasiswa</h4>
+    <!-- data akan di kirim ke file -->
+      <form action="proses-tambah.php" method="post">
         <table>
             <tr>
                 <td>NIM</td>
-                <td>  
-                    <input class="form-control" type="hidden" name="nim" value="<?php echo $d['nim'] ?>">
-                    <input class="form-control"  type="text" name="nim" value="<?php echo $d['nim'] ?>"></td>
+                <td><input class="form-control" type="text" name="nim"></td>
             </tr>
             <tr>
                 <td>Nama</td>
-                <td><input class="form-control" type="text" name="nama" value="<?php echo $d['nama'] ?>"></td>
+                <td><input class="form-control" type="text" name="nama"></td>
+            </tr>
+            <tr>
+                <td>Tempat Lahir</td>
+                <td><input class="form-control" type="text" name="tempat_lahir"></td>
+            </tr>
+            <!-- <tr>
+                <td>Tanggal Lahir</td>
+                <td><input class="form-control" type="date" name="tanggal_lahir"></td>
+            </tr> -->
+            <tr>
+                <td>Jenis Kelamin</td>
+                <td><select name="jenis_kelamin" >
+                    <option value="L">Laki-Laki</option>
+                    <option value="P">Perempuan</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>Agama</td>
+                <td><select name="agama" >
+                    <option value="Islam">Islam</option>
+                    <option value="Kristen">Kristen</option>
+                    <option value="Katolik">Katolik</option>
+                    <option value="Hindu">Hindu</option>
+                    <option value="Budha">Budha</option>
+                    <option value="Konghuchu">Konghuchu</option>
+                </select></td>
             </tr>
             <tr>
                 <td>Alamat</td>
-                <td><textarea class="form-control" name="alamat" id="" cols="30" rows="5"><?php echo $d['alamat'] ?></textarea></td>
+                <td><textarea class="form-control" name="alamat" id="" cols="30" rows="5"></textarea></td>
             </tr>
             <tr>
                 <td></td>
-                <td><input calss="btn btn-primary" type="submit" value="Simpan"></td>
+                <td><input class="btn btn-primary" type="submit" name="submit" value="Simpan"></td>
             </tr>
         </table>
-    <?php    
-    }
-    ?>
-    </form>
+      </form>
 
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
