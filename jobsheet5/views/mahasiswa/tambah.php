@@ -34,7 +34,7 @@
       <form action="proses-tambah.php" method="post">
         <table>
             <tr>
-                <td>NIM</td>
+                <td width="150">NIM</td>
                 <td><input class="form-control" type="text" name="nim"></td>
             </tr>
             <tr>

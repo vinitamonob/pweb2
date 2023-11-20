@@ -48,7 +48,7 @@ $dosen = $dosenController->getAllDosen();
         <td><?php echo $x['alamat'] ?></td>
         <td>
             <a class = "btn btn-warning" href="edit.php?nip=<?php echo $x['nip']; ?>">Edit</a>
-            <a class = "btn btn-danger" href="hapus.php?nip=<?php echo $x['nip']; ?>" onclik ="return confrim('Apakah yakin akan menghapus..?')">Hapus</a>
+            <a class = "btn btn-danger" href="hapus.php?nip=<?php echo $x['nip']; ?>" onclik="return confrim('Apakah yakin akan menghapus..?')">Hapus</a>
         </td>
       </tr>
       <?php

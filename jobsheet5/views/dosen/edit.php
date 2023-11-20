@@ -9,8 +9,8 @@ $db = $database->getKoneksi();
 if (isset($_GET['nip'])) {
     $nip = $_GET['nip'];
 
-    $dosenController = new DosenController($db);
-    $dosenData = $dosenController->getDosemByNip($nip);
+    $dosenController = new DosenController($db); //memanggil
+    $dosenData = $dosenController->getDosenByNip($nip);
 
     if ($dosenData) {
         if (isset($_POST['submit'])) {

@@ -9,13 +9,13 @@ class Dosen{
 
     public function getAllDosen() {
         $query="SELECT * FROM dosen";
-        $result=mysqli_query($this->koneksi, $query);
+        $result=mysqli_query($this->koneksi, $query); //mengambil data
         return $result;
     }
 
     public function createDosen($nip, $nama, $alamat) {
         $query="INSERT INTO dosen (nip, nama, alamat)
-        VALUES('$nim', '$nama', '$alamat')";
+        VALUES('$nip', '$nama', '$alamat')";
 
         $result = mysqli_query($this->koneksi, $query);
         if ($result) {
@@ -26,7 +26,7 @@ class Dosen{
     }
 
     public function getDosenByNip($nip) {
-        $query="SELECT * FROM dosen WHERE nip=$nip"; 
+        $query="SELECT * FROM dosen WHERE nip='$nip'"; 
         // $result=mysqli_query($this->koneksi, query);
         $result = $this->koneksi->query($query);
         return mysqli_fetch_assoc($result);
